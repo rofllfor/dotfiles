@@ -1,0 +1,41 @@
+#! /bin/sh
+
+
+# AUTOSTART
+sxhkd &
+xrandr --output DP-1 --off --output DP-2 --mode 1920x1080 --pos 0x0 --rotate normal --output DP-3 --off --output HDMI-1 --mode 1920x1080 --pos 1920x0 --rotate normal &
+picom --experimental-backend &
+sh $HOME/.config/polybar/launch.sh &
+wal -R &
+
+# MONITORS
+bspc monitor DP-2 -d VI VII VII IX X
+bspc monitor HDMI-1 -d I II III IV V 
+bspc monitor DP-2 -s HDMI-1
+
+# BSPWM CONFIG
+bspc config border_radius	10	
+bspc config border_width         2
+bspc config window_gap          15
+bspc config click_to_focus 	true
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+bspc config focus_follows_pointer	true
+
+# BSPWM WINDOW RULES
+bspc rule -a Terminator desktop='^1'
+bspc rule -a firefox desktop='^2'
+bspc rule -a Cider desktop='^3'
+bspc rule -a Nemo desktop='^4'
+bspc rule -a Steam desktop='^5'
+bspc rule -a Discord desktop='^5'
+bspc rule -a mplayer2 state=floating
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
+bscp rule -a Clone Hero Launcher state=floating
+
+# BSPWM COLORS
+bspc config normal_border_color	"#ffffff"
+bspc config focused_border_color "#BB595B"
+bspc config urgent_border_color	"#BAD977"
